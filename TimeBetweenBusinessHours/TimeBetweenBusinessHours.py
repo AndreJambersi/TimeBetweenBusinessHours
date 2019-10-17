@@ -22,7 +22,12 @@ class TimeBetweenBusinessHours:
         if(self.datetime_1 > self.datetime_2):
             hours = 0
         else:
-            days = get_days(self.datetime_1,self.datetime_2,self.work_timing,self.weekends,self.holidays_list)
+            first_day = self.datetime_1
+            days = 1
+            while(first_day.day < self.datetime_2.day):
+                if((first_day.isoweekday() not in self.weekends) and (first_day.strftime("%Y-%m-%d") not in self.holidays_list)):
+                    days += 1
+                first_day += datetime.timedelta(days=1)
             if(days > 1):
                 days = days - 2 #The day function is rounded up, so this ignore the last and first day
                 hours_day = self.work_timing[1] - self.work_timing[0]
@@ -72,16 +77,21 @@ class TimeBetweenBusinessHours:
             else:
                 hours_2 = self.datetime_2.hour
             #Generate hours
-            days = get_days(self.datetime_1,self.datetime_2,self.work_timing,self.weekends,self.holidays_list)
+            first_day = self.datetime_1
+            days = 1
+            while(first_day.day < self.datetime_2.day):
+                if((first_day.isoweekday() not in self.weekends) and (first_day.strftime("%Y-%m-%d") not in self.holidays_list)):
+                    days += 1
+                first_day += datetime.timedelta(days=1)
             if(days > 1):
                 days = days - 2
                 hours_day = self.work_timing[1] - self.work_timing[0]
-                hours = days * hours_day + hours_2 + (8 - hours_1)
+                hours = days * hours_day + hours_2 + (hours_day - hours_1)
             else:
                 if(hours_1 < hours_2):
                     hours = hours_2 - hours_1
                 elif(hours_1 > hours_2):
-                    hours = 8 + hours_2 - hours_1
+                    hours = hours_day + hours_2 - hours_1
                 else:
                     hours = 0
         return str(hours) + ':' + str(minutes)
