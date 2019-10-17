@@ -12,7 +12,7 @@ class TimeBetweenBusinessHours:
     def get_days(self): #Round up
         first_day = self.datetime_1
         days = 1
-        while(first_day.day < self.datetime_2.day):
+        while((first_day.day < self.datetime_2.day) or (first_day.month < self.datetime_2.month) or (first_day.year < self.datetime_2.year)):
             if((first_day.isoweekday() not in self.weekends) and (first_day.strftime("%Y-%m-%d") not in self.holidays_list)):
                 days += 1
             first_day += datetime.timedelta(days=1)
@@ -24,7 +24,7 @@ class TimeBetweenBusinessHours:
         else:
             first_day = self.datetime_1
             days = 1
-            while(first_day.day < self.datetime_2.day):
+            while((first_day.day < self.datetime_2.day) or (first_day.month < self.datetime_2.month) or (first_day.year < self.datetime_2.year)):
                 if((first_day.isoweekday() not in self.weekends) and (first_day.strftime("%Y-%m-%d") not in self.holidays_list)):
                     days += 1
                 first_day += datetime.timedelta(days=1)
@@ -79,7 +79,7 @@ class TimeBetweenBusinessHours:
             #Generate hours
             first_day = self.datetime_1
             days = 1
-            while(first_day.day < self.datetime_2.day):
+            while((first_day.day < self.datetime_2.day) or (first_day.month < self.datetime_2.month) or (first_day.year < self.datetime_2.year)):
                 if((first_day.isoweekday() not in self.weekends) and (first_day.strftime("%Y-%m-%d") not in self.holidays_list)):
                     days += 1
                 first_day += datetime.timedelta(days=1)
