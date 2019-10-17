@@ -86,7 +86,7 @@ class TimeBetweenBusinessHours:
             if(days > 1):
                 days = days - 2
                 hours_day = self.work_timing[1] - self.work_timing[0]
-                hours = days * hours_day + hours_2 + (hours_day - hours_1)
+                hours = days * hours_day + hours_2 + (hours_day - hours_1 - 1) #Hours get the rounded up time, so I reduce 1
             else:
                 if(hours_1 < hours_2):
                     hours = hours_2 - hours_1
