@@ -9,7 +9,7 @@ class TimeBetweenBusinessHours:
         self.weekends = weekends
         self.holidays_list = holidays_list
 
-    def get_days(self,datetime): #Round up
+    def get_days(self): #Round up
         first_day = self.datetime_1
         days = 1
         while(first_day.day < self.datetime_2.day):
