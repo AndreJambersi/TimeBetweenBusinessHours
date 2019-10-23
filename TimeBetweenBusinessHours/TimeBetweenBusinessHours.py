@@ -71,12 +71,20 @@ class TimeBetweenBusinessHours:
             hours = 0
         else:
             hours = 0
-            if((self.datetime_1.hour < self.work_timing[0]) or (self.datetime_1.hour > (self.work_timing[1] - 1))):
+            if((self.datetime_1.hour < self.work_timing[0]) or
+               (self.datetime_1.hour > (self.work_timing[1] - 1))):
                 minute_1 = 0
+            elif((self.datetime_1.isoweekday() in self.weekends) or
+                 (self.datetime_1.strftime("%Y-%m-%d") in self.holidays_list)):
+               minute_1 = 0
             else:
                 minute_1 = self.datetime_1.minute
-            if((self.datetime_2.hour < self.work_timing[0]) or (self.datetime_2.hour > (self.work_timing[1] - 1))):
+            if((self.datetime_2.hour < self.work_timing[0]) or
+               (self.datetime_2.hour > (self.work_timing[1] - 1))):
                 minute_2 = 0
+            elif((self.datetime_2.isoweekday() in self.weekends) or
+                 (self.datetime_2.strftime("%Y-%m-%d") in self.holidays_list)):
+               minute_2 = 0
             else:
                 minute_2 = self.datetime_2.minute
             if(minute_1 < minute_2):
@@ -87,23 +95,38 @@ class TimeBetweenBusinessHours:
             else:
                 minutes = 0
             #Generate hours
-            if((self.datetime_1.hour < self.work_timing[0]) or (self.datetime_1.hour > (self.work_timing[1] - 1))):
+            days = 0
+            if((self.datetime_1.hour < self.work_timing[0]) or
+               (self.datetime_1.hour > (self.work_timing[1] - 1))):
                 hours_1 = self.datetime_1.replace(hour=self.work_timing[0],minute=0,second=0).hour
+            elif((self.datetime_1.isoweekday() in self.weekends) or
+                 (self.datetime_1.strftime("%Y-%m-%d") in self.holidays_list)):
+               hours_1 = self.datetime_1.replace(hour=self.work_timing[0],minute=0,second=0).hour
+               if(self.datetime_2.hour > (self.work_timing[1] - 1)):
+                   days += 1
             else:
                 hours_1 = self.datetime_1.hour
-            if((self.datetime_2.hour < self.work_timing[0]) or (self.datetime_2.hour > (self.work_timing[1] - 1))):
+            if((self.datetime_2.hour < self.work_timing[0]) or
+               (self.datetime_2.hour > (self.work_timing[1] - 1))):
                 hours_2 = self.datetime_2.replace(hour=self.work_timing[0],minute=0,second=0).hour
+            elif((self.datetime_2.isoweekday() in self.weekends) or
+                 (self.datetime_2.strftime("%Y-%m-%d") in self.holidays_list)):
+               hours_2 = self.datetime_2.replace(hour=self.work_timing[0],minute=0,second=0).hour
             else:
                 hours_2 = self.datetime_2.hour
             first_day = self.datetime_1
-            days = 0
-            while((first_day.day < self.datetime_2.day) or (first_day.month < self.datetime_2.month) or (first_day.year < self.datetime_2.year)):
-                if((first_day.isoweekday() not in self.weekends) and (first_day.strftime("%Y-%m-%d") not in self.holidays_list)):
+            while((first_day.day < self.datetime_2.day) or
+                  (first_day.month < self.datetime_2.month) or
+                  (first_day.year < self.datetime_2.year)):
+                if((first_day.isoweekday() not in self.weekends) and
+                   (first_day.strftime("%Y-%m-%d") not in self.holidays_list)):
                     days += 1
                 first_day += datetime.timedelta(days=1)
             hours_day = self.work_timing[1] - self.work_timing[0]
             hours = days * hours_day + hours_2 - hours_1 + hours
-            if((self.datetime_1.day == self.datetime_2.day) and (self.datetime_1.month == self.datetime_2.month) and (self.datetime_1.year == self.datetime_2.year)):
+            if((self.datetime_1.day == self.datetime_2.day) and
+               (self.datetime_1.month == self.datetime_2.month) and
+               (self.datetime_1.year == self.datetime_2.year)):
                 if(self.datetime_1.hour < self.work_timing[0]):
                     hours_1 = self.work_timing[0]
                 elif(self.datetime_1.hour > (self.work_timing[1] - 1)):
