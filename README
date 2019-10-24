@@ -1,3 +1,9 @@
 In progress
+
+Use TimeBetweenBusinessHours(datetime_1,datetime_2,work_timing,weekends,holidays_list)
+.get_hours_and_minutes() #Working fine
+.get_days() #Still with some problems
+.get_hours() #Still with some problems
+
 TODO >>> Explain, describe functions, describe how to use
 https://pypi.org/project/TimeBetweenBusinessHours/
