@@ -6,14 +6,16 @@ Use TimeBetweenBusinessHours(datetime_1,datetime_2,work_timing,weekends,holidays
 .get_hours() #Still with some problems
 
 Variables:
-datetime_1  - TODO
+datetime_1 - TODO
 datetime_2 - TODO
-work_timing - TODO
-weekends - TODO
+work_timing - The hour that is decided to start the working time and the hour that is decided to stop.
+weekends - Days of the week that you don't want to consider
 holidays_list - List of holidays that won't be counted in the difference of dates
 
 Examples:
-datetime_1,datetime_2,work_timing,weekends - TODO
+datetime_1,datetime_2
+work_timing = [9,18] #Insert the hour of the shift, in the example, it starts at 9:00 and ends at 18:00
+weekends = [6, 7] #Insert the days of the week that you don't want to consider, starting with 1 as monday, 2 as tuesday, and so on. Saturday and Sunday in the example.
 holidays_list = ['2019-01-01','2019-03-05','2019-03-06','2019-04-19','2019-04-21','2019-05-01','2019-06-20','2019-09-07','2019-10-12','2019-11-02','2019-11-15','2019-12-25']
 
 TODO >>> Explain, describe functions, describe how to use
