@@ -1,5 +1,8 @@
 In progress
 
+This project calculate the diference between two dates considering the working time, weekends and holidays.
+You can use 'pip install TimeBetweenBusinessHours', more info: https://pypi.org/project/TimeBetweenBusinessHours/
+
 Use TimeBetweenBusinessHours(datetime_1,datetime_2,work_timing,weekends,holidays_list)
 .get_hours_and_minutes() #Working fine
 .get_days() #Still with some problems
@@ -20,4 +23,3 @@ weekends = [6, 7] #Insert the days of the week that you don't want to consider, 
 holidays_list = ['2019-01-01','2019-03-05','2019-03-06','2019-04-19','2019-04-21','2019-05-01','2019-06-20','2019-09-07','2019-10-12','2019-11-02','2019-11-15','2019-12-25']
 
 TODO >>> Explain, describe functions, describe how to use
-https://pypi.org/project/TimeBetweenBusinessHours/
