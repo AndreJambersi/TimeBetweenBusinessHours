@@ -22,4 +22,6 @@ work_timing = [9,18] #Insert the hour of the shift, in the example, it starts at
 weekends = [6, 7] #Insert the days of the week that you don't want to consider, starting with 1 as monday, 2 as tuesday, and so on. Saturday and Sunday in the example.
 holidays_list = ['2019-01-01','2019-03-05','2019-03-06','2019-04-19','2019-04-21','2019-05-01','2019-06-20','2019-09-07','2019-10-12','2019-11-02','2019-11-15','2019-12-25']
 
-TODO >>> Explain, describe functions, describe how to use
+Next Steps:
+- Adjust .get_days()
+- Adjust .get_hours()
