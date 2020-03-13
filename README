@@ -4,7 +4,7 @@ This project calculate the diference between two dates considering the working t
 You can use 'pip install TimeBetweenBusinessHours', more info: https://pypi.org/project/TimeBetweenBusinessHours/
 
 Use TimeBetweenBusinessHours(datetime_1,datetime_2,work_timing,weekends,holidays_list)
-.get_hours_and_minutes() #Working fine
+.get_hours_and_minutes() #Working fine, but may have some problems with the seconds precision
 .get_days() #Still with some problems
 .get_hours() #Still with some problems
 
